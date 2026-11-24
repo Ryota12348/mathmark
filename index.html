@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MATH MARK</title>
+<style>
+:root{--bg:#f6f8fb;--sf:#fff;--tx:#14213d;--mu:#6b7690;--ac:#1f3a8a;--ac2:#e8eefc;--bd:#d5dbe8;--wn:#d97706;--wb:#fff7ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+:root[data-d]{color-scheme:dark;--bg:#0f1524;--sf:#182038;--tx:#e8ecf7;--mu:#9aa6c4;--ac:#7c9cff;--ac2:#22305a;--bd:#2c3858;--wb:#2a2418}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Hiragino Sans","Noto Sans JP",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:10}
+button{font:inherit;color:inherit;cursor:pointer}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sf);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;padding:8px 12px}
+.wrap{max-width:860px;margin:0 auto;padding:12px}
+.logo{font-weight:800;letter-spacing:.06em;color:var(--ac);margin-right:auto;font-size:17px}
+.btn{border:1px solid var(--bd);background:var(--sf);border-radius:8px;padding:8px 12px;min-height:40px}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+:root[data-d] .btn.p,:root[data-d] .fab{color:#0f1524}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:14px;cursor:pointer}
+.card h3{margin:0 0 4px;font-size:16px}.mu{color:var(--mu);font-size:13px}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:6px;padding:0 8px;font-size:12px;font-weight:700}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px}
+.bar{height:6px;background:var(--ac2);border-radius:3px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--ac)}
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:30px;box-shadow:0 4px 14px #0004}
+.modal{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.box{background:var(--sf);border-radius:14px;padding:18px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.box h2{margin:0 0 12px;font-size:17px}
+.opt{display:block;width:100%;text-align:left;border:2px solid var(--bd);background:var(--sf);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.opt.on{border-color:var(--ac);background:var(--ac2)}
+input[type=text]{width:100%;border:1px solid var(--bd);border-radius:8px;padding:10px;font:inherit;background:var(--sf);color:var(--tx);margin:4px 0 12px}
+.ti{border:0;background:transparent;margin:0;padding:6px;font-weight:700;flex:1;min-width:0}
+.st{font-size:12px;color:var(--mu);white-space:nowrap}
+.prog{position:sticky;top:calc(57px + env(safe-area-inset-top,0px));z-index:4;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--bd)}
+.q{background:var(--sf);border:1px solid var(--bd);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.qh{display:flex;justify-content:space-between;width:100%;border:0;background:var(--ac2);padding:10px 12px;font-weight:700;color:var(--ac)}
+.qb.h{display:none}.qb{padding:6px 8px 10px}
+.r{display:grid;grid-template-columns:26px 1fr;gap:4px;align-items:center;padding:3px 4px;border-left:3px solid var(--wn);background:var(--wb);border-radius:4px;margin-top:4px}
+.r.d{border-left-color:var(--ac);background:transparent}
+.r b{font-size:14px;text-align:center}.ms{display:grid;grid-template-columns:repeat(11,1fr);gap:2px}
+.m{aspect-ratio:3/4;min-width:0;padding:0;border:1px solid var(--bd);border-radius:50%;background:var(--sf);font-size:12px;line-height:1}
+.m.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:700}
+:root[data-d] .m.on{color:#0f1524}
+@media (max-width:420px){.m{font-size:11px}}
+@media (min-width:700px){.q-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}.q{margin:0}.m{font-size:14px}}
+header .btn{padding:8px 9px;font-size:13px}
+:root[data-c="green"]{--ac:#166534;--ac2:#e3f4e8;--bg:#f5faf6;--bd:#d2e3d7}:root[data-c="purple"]{--ac:#5b21b6;--ac2:#efe8fb;--bg:#f8f6fc;--bd:#ddd5ee}:root[data-c="rose"]{--ac:#be123c;--ac2:#fde7ec;--bg:#fdf6f7;--bd:#ecd5da}:root[data-c="pink"]{--ac:#d63384;--ac2:#fde6f1;--bg:#fef6fa;--bd:#f2d4e3}:root[data-c="sky"]{--ac:#0284c7;--ac2:#e0f2fe;--bg:#f3f9fd;--bd:#cfe3f0}:root[data-c="yellow"]{--ac:#a16207;--ac2:#fef3c7;--bg:#fefce8;--bd:#eadf9f;--wn:#dc2626;--wb:#fff1f1}
+:root[data-d][data-c="green"]{--bg:#0e1a13;--sf:#15251c;--tx:#e6f3ea;--mu:#9bb5a4;--ac:#4ade80;--ac2:#1d3a29;--bd:#2a4636}
+:root[data-d][data-c="purple"]{--bg:#16101f;--sf:#1f172c;--tx:#efe9fa;--mu:#b0a3c8;--ac:#a78bfa;--ac2:#2e2347;--bd:#3d2f5a}
+:root[data-d][data-c="rose"]{--bg:#1c1015;--sf:#27161d;--tx:#fae9ee;--mu:#c9a3af;--ac:#fb7185;--ac2:#3d1f2a;--bd:#522c3a}
+:root[data-d][data-c="pink"]{--bg:#1c1018;--sf:#271620;--tx:#fbe9f2;--mu:#caa3b9;--ac:#f472b6;--ac2:#3d1f31;--bd:#52283f}
+:root[data-d][data-c="sky"]{--bg:#0c1822;--sf:#12222f;--tx:#e4f2fb;--mu:#9cb6c8;--ac:#38bdf8;--ac2:#163247;--bd:#244357}
+:root[data-d][data-c="yellow"]{--bg:#1a1708;--sf:#241f0d;--tx:#faf3d4;--mu:#c4b98a;--ac:#facc15;--ac2:#3a3210;--bd:#4f4515;--wn:#f87171;--wb:#2f1a1a}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--sf)}.top header,.top .prog{position:static}
+.sw{display:flex;align-items:center;gap:6px;margin-bottom:6px}#swt{font-size:18px;font-variant-numeric:tabular-nums;margin-right:auto}.sb{min-height:32px;padding:2px 10px;font-size:13px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:20px;z-index:30;max-width:90%;font-size:14px}
+textarea{width:100%;height:160px;border:1px solid var(--bd);border-radius:8px;padding:10px;font:13px/1.4 ui-monospace,Menlo,monospace;background:var(--sf);color:var(--tx);resize:vertical}
+.pl label{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
+#print{display:none}
+@media print{
+@page{size:A4 portrait;margin:10mm}
+body{background:#fff}body::before,#app,.modal,.toast,.fab{display:none!important}
+#print{display:block;color:#000;font-family:"Hiragino Sans","Noto Sans JP",sans-serif}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6mm 8mm;height:277mm;page-break-after:always;break-after:page}
+.pg:last-child{page-break-after:auto;break-after:auto}
+.pc{border:.4mm solid #000;padding:2mm 3mm;overflow:hidden}
+.pc h4{margin:0 0 1.5mm;font-size:3.6mm;display:flex;justify-content:space-between;border-bottom:.3mm solid #000;padding-bottom:1mm}
+.pr{display:grid;grid-template-columns:8mm repeat(11,1fr);align-items:center;height:4mm}
+.pr b{font-size:2.6mm}
+.pr i{width:2.8mm;height:3.7mm;border:.25mm solid #000;border-radius:50%;font-style:normal;font-size:2.2mm;line-height:3.1mm;text-align:center;margin:0 auto}
+.pr i.on{background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body>
+<div id="app"></div><div id="print"></div><div id="ov"></div>
+<script>
+const KEY='mathmark.v1',MK=['-','0','1','2','3','4','5','6','7','8','9'],LB='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ'.split('');
+const T={math1:{n:'数1',q:4},math2:{n:'数2',q:6},single:{n:'1問',q:1},custom:{n:'カスタム',q:0}};
+let S=[],cur=null,hid={};
+try{const d=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(d))S=d}catch(e){}
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>'sheet-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const norm=s=>s.type==='custom'?s.answers.map(q=>q.map(v=>MK.includes(v)?v:null)):Array.from({length:T[s.type].q},(_,i)=>Array.from({length:30},(_,j)=>{const v=(s.answers&&s.answers[i]||[])[j];return MK.includes(v)?v:null}));
+const cnt=s=>s.answers.flat().filter(v=>v!==null).length,tot=s=>s.answers.reduce((a,q)=>a+q.length,0),LBL=(s,q,j)=>s.labels?s.labels[q][j]:LB[j],cap=(s,i,a)=>s.type==='single'?'1問':T[s.type].n+' 第'+(i+1)+'問'+(a?'（続）':'');
+const fd=t=>new Date(t).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));return true}catch(e){toast('保存に失敗しました');return false}}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2800)}
+async function saveFile(name,blob){name=name.replace(/[^\p{L}\p{N}._ -]/gu,'_');
+try{const d=window.claude&&await claude.use('downloads');if(d){await d.save({filename:name,data:blob});return 1}}catch(e){if(e&&e.code==='declined')return 0}
+try{const f=new File([blob],name,{type:blob.type});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f]});return 1}}catch(e){if(e&&e.name==='AbortError')return 0}
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);return 1}
+const dl=(n,o,msg)=>{const txt=JSON.stringify(o,null,1);$('#ov').innerHTML='<div class="modal"><div class="box"><h2>書き出し方法</h2><button class="opt" id="e1"><b>クリップボードにコピー</b></button><button class="opt" id="e2"><b>JSONで保存</b></button><button class="btn" id="e3">キャンセル</button></div></div>';
+$('#e3').onclick=()=>$('#ov').innerHTML='';
+$('#e1').onclick=async()=>{$('#ov').innerHTML='';let ok=false;try{await navigator.clipboard.writeText(txt);ok=true}catch(e){const t=document.createElement('textarea');t.value=txt;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{ok=document.execCommand('copy')}catch(e2){}t.remove()}toast(ok?'クリップボードにコピーしました':'コピーに失敗しました')};
+$('#e2').onclick=()=>{$('#ov').innerHTML='';saveFile(n,new Blob([txt],{type:'application/json'})).then(ok=>ok&&toast(msg))}};
+const ex=list=>({version:1,sheets:list.map(s=>({type:s.type,title:s.title,answers:norm(s).map((q,qi)=>Object.fromEntries(q.map((v,j)=>[LBL(s,qi,j),v])))}))});
+const ask=(msg,ok)=>new Promise(r=>{$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>確認</h2><p style="margin:0 0 16px">${esc(msg)}</p><div class="row"><button class="btn" id="n0">キャンセル</button><button class="btn p" id="y0" style="background:#c0392b;border-color:#c0392b;color:#fff">${esc(ok)}</button></div></div></div>`;const f=v=>{$('#ov').innerHTML='';r(v)};$('#n0').onclick=()=>f(false);$('#y0').onclick=()=>f(true);$('.modal').onclick=e=>{if(e.target.classList.contains('modal'))f(false)}});
+let SW={el:0,t0:0,run:false};try{const d=JSON.parse(localStorage.getItem('mathmark.sw'));if(d&&typeof d.el==='number')SW=d}catch(e){}
+const swMs=()=>SW.el+(SW.run?Date.now()-SW.t0:0),swFmt=()=>{const t=Math.floor(swMs()/1000),p=n=>String(n).padStart(2,'0');return p(Math.floor(t/3600))+':'+p(Math.floor(t/60)%60)+':'+p(t%60)},swSave=()=>{try{localStorage.setItem('mathmark.sw',JSON.stringify(SW))}catch(e){}};
+function swUp(){const t=$('#swt');if(t){t.textContent=swFmt();$('#sws').textContent=SW.run?'ストップ':'スタート'}}
+function swBind(){$('#sws').onclick=()=>{if(SW.run){SW.el+=Date.now()-SW.t0;SW.run=false}else{SW.t0=Date.now();SW.run=true}swSave();swUp()};$('#swr').onclick=()=>{SW.el=0;SW.t0=Date.now();swSave();swUp()};swUp()}
+setInterval(swUp,250);
+const COL=[['navy','ネイビー','#1f3a8a'],['green','グリーン','#166534'],['purple','パープル','#5b21b6'],['rose','ローズ','#be123c'],['pink','ピンク','#d63384'],['sky','水色','#0284c7'],['yellow','黄色','#a16207']],MD=[['auto','自動（端末に合わせる）'],['light','ライト'],['dark','ダーク']];
+let CL='navy',MO='auto';try{const o=localStorage.getItem('mathmark.theme'),c=localStorage.getItem('mathmark.col'),m=localStorage.getItem('mathmark.mode');if(c||m){CL=c||'navy';MO=m||'auto'}else if(o){if(['auto','light','dark'].includes(o))MO=o;else CL=o}}catch(e){}
+if(!COL.some(c=>c[0]===CL))CL='navy';
+const dq=matchMedia('(prefers-color-scheme: dark)'),HE=document.documentElement;
+const applyTh=()=>{const d=MO==='dark'||(MO==='auto'&&dq.matches);d?HE.setAttribute('data-d','1'):HE.removeAttribute('data-d');CL==='navy'?HE.removeAttribute('data-c'):HE.setAttribute('data-c',CL)};applyTh();dq.addEventListener&&dq.addEventListener('change',applyTh);
+function themeDlg(){const sw=(a,cur,key)=>a.map(t=>`<button class="opt ${t[0]===cur?'on':''}" data-${key}="${t[0]}">${t[2]?`<i style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${t[2]};vertical-align:-2px;margin-right:8px"></i>`:''}<b>${t[1]}</b></button>`).join('');
+$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>カラー</h2>${sw(COL,CL,'c')}<h2 style="margin-top:14px">表示モード</h2>${sw(MD,MO,'m')}<div class="row"><span></span><button class="btn" id="tc">閉じる</button></div></div></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(b.dataset.c)CL=b.dataset.c;if(b.dataset.m)MO=b.dataset.m;try{localStorage.setItem('mathmark.col',CL);localStorage.setItem('mathmark.mode',MO)}catch(e){}applyTh();document.querySelectorAll(b.dataset.c?'.opt[data-c]':'.opt[data-m]').forEach(x=>x.classList.toggle('on',x===b))});$('#tc').onclick=()=>$('#ov').innerHTML=''}
+function expDlg(){if(!S.length)return toast('シートがありません');
+$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>エクスポートするシートを選択</h2><div class="pl">${S.map(s=>`<label><input type="checkbox" value="${s.id}" checked><span>${esc(s.title||'無題のシート')} <span class="tag">${T[s.type].n}</span></span></label>`).join('')}</div><div class="row"><button class="btn" id="xa">すべて選択/解除</button><span></span></div><div class="row" style="margin-top:14px"><button class="btn" id="xc">キャンセル</button><button class="btn p" id="xn">次へ</button></div></div></div>`;
+const cb=()=>[...document.querySelectorAll('.pl input')];$('#xc').onclick=()=>$('#ov').innerHTML='';$('#xa').onclick=()=>{const all=cb().every(i=>i.checked);cb().forEach(i=>i.checked=!all)};
+$('#xn').onclick=()=>{const sel=cb().filter(i=>i.checked).map(i=>S.find(s=>s.id===i.value));if(!sel.length)return toast('シートを選択してください');dl(sel.length===1?'math-mark-'+(sel[0].title||sel[0].id)+'.json':'math-mark-'+sel.length+'sheets.json',ex(sel),sel.length+'件を書き出しました')}}
+function impDlg(){$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>インポート</h2><textarea id="it" placeholder="ここにJSONを貼り付け" autocapitalize="off" spellcheck="false"></textarea><div class="row"><button class="btn" id="if">ファイルを選択</button><button class="btn p" id="ig">読み込む</button></div><div class="row"><button class="btn" id="ic">キャンセル</button><span></span></div></div></div>`;
+$('#ic').onclick=()=>$('#ov').innerHTML='';$('#if').onclick=()=>$('#fi').click();$('#ig').onclick=()=>{const t=$('#it').value.trim();if(!t)return toast('JSONを貼り付けてください');importText(t)}}
+function home(){cur=null;
+$('#app').innerHTML=`<header><span class="logo">MATH MARK</span><button class="btn" id="imp">インポート</button><button class="btn" id="exa">エクスポート</button><button class="btn" id="prn">印刷</button><button class="btn" id="thm" aria-label="カラーテーマ">🎨</button></header>
+<div class="wrap">${S.length?'<div class="grid">'+S.slice().sort((a,b)=>b.updatedAt-a.updatedAt).map(s=>`<div class="card" data-id="${s.id}"><div class="row" style="margin:0"><h3>${esc(s.title||'無題のシート')}</h3><span class="tag">${T[s.type].n}</span></div><div class="mu">回答済み ${cnt(s)} / ${tot(s)}</div><div class="bar"><i style="width:${cnt(s)/tot(s)*100}%"></i></div><div class="row"><span class="mu">更新 ${fd(s.updatedAt)}</span><button class="btn del" data-id="${s.id}">削除</button></div></div>`).join('')+'</div>':'<p class="mu" style="text-align:center;margin-top:60px">シートがありません。右下の＋から作成してください。</p>'}</div>
+<button class="fab" id="add" aria-label="新規作成">＋</button><input type="file" id="fi" accept=".json,application/json" hidden>`;
+$('#add').onclick=newSheet;$('#thm').onclick=themeDlg;$('#prn').onclick=()=>printDlg();$('#exa').onclick=expDlg;
+$('#imp').onclick=impDlg;$('#fi').onchange=e=>importFile(e.target.files[0]);
+document.querySelectorAll('.card').forEach(c=>c.onclick=e=>{if(e.target.closest('.del'))return;edit(c.dataset.id)});
+document.querySelectorAll('.del').forEach(b=>b.onclick=async()=>{const s=S.find(x=>x.id===b.dataset.id);if(await ask('「'+(s.title||'無題のシート')+'」を削除しますか？この操作は取り消せません。','削除')){S=S.filter(x=>x!==s);save();home()}})}
+function newSheet(){let ty='math1';const draw=()=>{$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>新規作成</h2>${Object.keys(T).filter(k=>k!=='custom').map(k=>`<button class="opt ${k===ty?'on':''}" data-k="${k}"><b>${T[k].n}</b><br><span class="mu">大問${T[k].q}・${T[k].q*30}解答欄</span></button>`).join('')}<label class="mu">タイトル（任意）</label><input type="text" id="nt" placeholder="例：第3回模試" value="${esc(window._nt||'')}"><div class="row"><button class="btn" id="cn">キャンセル</button><button class="btn p" id="ok">作成</button></div></div></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{window._nt=$('#nt').value;ty=b.dataset.k;draw()});$('#cn').onclick=()=>{window._nt='';$('#ov').innerHTML=''};
+$('#ok').onclick=()=>{const n=Date.now(),s={id:uid(),type:ty,title:$('#nt').value.trim(),createdAt:n,updatedAt:n};s.answers=norm(s);S.push(s);save();window._nt='';$('#ov').innerHTML='';edit(s.id)}};draw()}
+function edit(id){const s=S.find(x=>x.id===id);cur=s;hid={};
+$('#app').innerHTML=`<div class="top"><header><button class="btn" id="bk">←</button><input class="ti" id="tt" type="text" placeholder="無題のシート" value="${esc(s.title)}"><span class="st" id="sv">保存済み</span><button class="btn" id="ee">書出</button><button class="btn" id="pp">印刷</button></header>
+<div class="prog"><div class="sw"><b id="swt">00:00:00</b><button class="btn sb" id="sws">スタート</button><button class="btn sb" id="swr">リセット</button></div><div class="row" style="margin:0"><b id="pc"></b><span id="pr" class="mu"></span></div><div class="bar" style="margin-top:4px"><i id="pb"></i></div></div></div>
+<div class="wrap"><div class="q-wrap">${s.answers.map((a,qi)=>`<div class="q"><button class="qh" data-q="${qi}"><span>${s.type==='single'?'解答欄':'第'+(qi+1)+'問'}</span><span class="qc"></span></button><div class="qb" id="qb${qi}">${a.map((v,r)=>`<div class="r" data-q="${qi}" data-r="${r}"><b>${LBL(s,qi,r)}</b><div class="ms">${MK.map(m=>`<button class="m" data-v="${m}">${m==='-'?'−':m}</button>`).join('')}</div></div>`).join('')}</div></div>`).join('')}</div><div style="text-align:center;margin:20px 0 40px"><button class="btn" id="rs" style="color:#c0392b;border-color:#c0392b">このシートの解答をリセット</button></div></div>`;
+s.answers.forEach((a,qi)=>a.forEach((v,r)=>rowUp(qi,r)));stat();
+$('#bk').onclick=home;swBind();$('#rs').onclick=async()=>{if(await ask('「'+(s.title||'無題のシート')+'」の解答 '+cnt(s)+' 件をすべてリセットしますか？この操作は取り消せません。','リセット')){s.answers=s.answers.map(q=>q.map(()=>null));s.answers.forEach((a,q)=>a.forEach((v,r)=>rowUp(q,r)));touch();stat()}};$('#ee').onclick=()=>{dl('math-mark-'+(s.title||s.id)+'.json',ex([s]),'このシートを書き出しました')};$('#pp').onclick=()=>printDlg(s.id);
+$('#tt').oninput=e=>{s.title=e.target.value;touch()};
+document.querySelectorAll('.qh').forEach(b=>b.onclick=()=>{const i=b.dataset.q;$('#qb'+i).classList.toggle('h')});
+$('.wrap').onclick=e=>{const b=e.target.closest('.m');if(!b)return;const r=b.closest('.r'),q=+r.dataset.q,j=+r.dataset.r,v=b.dataset.v;s.answers[q][j]=s.answers[q][j]===v?null:v;rowUp(q,j);touch();stat()}}
+function rowUp(q,j){const r=document.querySelector(`.r[data-q="${q}"][data-r="${j}"]`),v=cur.answers[q][j];r.classList.toggle('d',v!==null);r.querySelectorAll('.m').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
+function stat(){const s=cur,c=cnt(s),t=tot(s);$('#pc').textContent=`回答済み ${c} / ${t}`;$('#pr').textContent=`回答率 ${(c/t*100).toFixed(1)}%`;$('#pb').style.width=c/t*100+'%';s.answers.forEach((a,i)=>document.querySelector(`.qh[data-q="${i}"] .qc`).textContent=a.filter(v=>v!==null).length+' / '+a.length)}
+let tm;function touch(){cur.updatedAt=Date.now();$('#sv').textContent='保存中…';clearTimeout(tm);tm=setTimeout(()=>{$('#sv').textContent=save()?'保存済み':'保存失敗'},250)}
+function importFile(f){if(!f)return;const rd=new FileReader();rd.onload=()=>importText(rd.result);rd.readAsText(f,'utf-8')}
+function importText(txt){let d;try{d=JSON.parse(txt)}catch(e){return toast('エラー：JSONとして読み込めません')}
+if(!d||d.version!==1||!Array.isArray(d.sheets))return toast('エラー：対応していない形式です');
+const ids=new Set(S.map(s=>s.id));let ok=0,ng=0,re=0,tr=0;
+d.sheets.forEach(s=>{const t=s&&T[s.type],nv=v=>typeof v==='number'?String(v):v===''?null:v,ent=a=>Array.isArray(a)?{L:a.map((_,j)=>String(j+1)),V:a.map(nv),S:a.map(nv),std:a.length<=30}:(a&&typeof a==='object'?{L:Object.keys(a),V:Object.values(a).map(nv),S:LB.map(k=>k in a?nv(a[k]):null),std:Object.keys(a).every(k=>LB.includes(k))}:null);
+const R=s&&Array.isArray(s.answers)&&s.answers.length>=1&&s.answers.length<=200?s.answers.map(ent):null;
+if(!R||!R.some(r=>r&&r.V.length)||!R.every(r=>r&&r.V.length<=300&&r.L.every(l=>l&&l.length<=12)&&r.V.every(v=>v===null||MK.includes(v)))){ng++;return}
+let ty='custom',A=R.map(r=>r.V),lab=R.map(r=>r.L);if(t&&s.type!=='custom'&&R.length===t.q&&R.every(r=>r.std)){ty=s.type;A=R.map(r=>r.S);lab=null}
+let id=typeof s.id==='string'&&s.id?s.id:uid();if(ids.has(id)){id=uid();re++}ids.add(id);const n=Date.now(),o={id,type:ty,title:typeof s.title==='string'?s.title:'',createdAt:+s.createdAt||n,updatedAt:+s.updatedAt||n};o.answers=norm({type:ty,answers:A});if(lab)o.labels=lab;S.push(o);ok++});
+save();$('#ov').innerHTML='';home();toast(`${ok}件を読み込みました`+(re?`（ID重複${re}件は新規発行）`:'')+(ng?`／${ng}件は形式エラー`:'')+(tr?`／${tr}欄は31番目以降のため除外`:''))}
+function drawPage(cs){const c=document.createElement('canvas');c.width=1240;c.height=1754;const g=c.getContext('2d'),F='"Hiragino Sans","Noto Sans JP",sans-serif';g.fillStyle='#fff';g.fillRect(0,0,1240,1754);g.textBaseline='middle';
+cs.forEach(([s,i,a,b],k)=>{const x=59+k%4*292,y=59+(k>>2)*835;g.strokeStyle=g.fillStyle='#000';g.lineWidth=2;g.strokeRect(x,y,245,800);g.font='bold 17px '+F;g.textAlign='left';g.fillText(s.title||'無題のシート',x+10,y+18,225);g.font='14px '+F;g.fillText(cap(s,i,a),x+10,y+42);g.lineWidth=1;g.beginPath();g.moveTo(x+8,y+58);g.lineTo(x+237,y+58);g.stroke();g.textAlign='center';
+s.answers[i].slice(a,b).forEach((v,r)=>{const ry=y+76+r*23.4;g.fillStyle='#000';g.font='bold 14px '+F;g.fillText(LBL(s,i,a+r),x+22,ry,28);MK.forEach((m,j)=>{const cx=x+46+j*18.2,on=m===v;g.beginPath();g.ellipse(cx,ry,6.5,10.5,0,0,7);g.lineWidth=1.5;g.fillStyle=on?'#000':'#fff';g.fill();g.stroke();g.fillStyle=on?'#fff':'#000';g.font='12px '+F;g.fillText(m==='-'?'−':m,cx,ry+1)})})});return c}
+function mkPDF(pages){const E=new TextEncoder(),P=[],O=[];let L=0;const w=x=>{if(typeof x==='string')x=E.encode(x);P.push(x);L+=x.length},ob=(n,s)=>{O[n]=L;w(n+' 0 obj\n'+s+'\nendobj\n')};
+const N=2+pages.length*3;w('%PDF-1.4\n');ob(1,'<</Type/Catalog/Pages 2 0 R>>');ob(2,`<</Type/Pages/Kids[${pages.map((_,k)=>(3+k*3)+' 0 R').join(' ')}]/Count ${pages.length}>>`);
+pages.forEach((cs,k)=>{const p=3+k*3,jp=Uint8Array.from(atob(drawPage(cs).toDataURL('image/jpeg',.92).split(',')[1]),c=>c.charCodeAt(0)),ct='q 595.28 0 0 841.89 0 0 cm /I Do Q';
+ob(p,`<</Type/Page/Parent 2 0 R/MediaBox[0 0 595.28 841.89]/Resources<</XObject<</I ${p+2} 0 R>>>>/Contents ${p+1} 0 R>>`);ob(p+1,`<</Length ${ct.length}>>\nstream\n${ct}\nendstream`);
+O[p+2]=L;w(`${p+2} 0 obj\n<</Type/XObject/Subtype/Image/Width 1240/Height 1754/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length ${jp.length}>>\nstream\n`);w(jp);w('\nendstream\nendobj\n')});
+const xp=L;w(`xref\n0 ${N+1}\n0000000000 65535 f \n`+O.slice(1).map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<</Size ${N+1}/Root 1 0 R>>\nstartxref\n${xp}\n%%EOF`);return new Blob(P,{type:'application/pdf'})}
+function printDlg(pre){if(!S.length)return toast('シートがありません');
+$('#ov').innerHTML=`<div class="modal"><div class="box"><h2>印刷するシートを選択</h2><div class="pl">${S.map(s=>`<label><input type="checkbox" value="${s.id}" ${pre===s.id?'checked':''}><span>${esc(s.title||'無題のシート')} <span class="tag">${T[s.type].n}</span></span></label>`).join('')}</div><p class="mu">A4縦・白黒対応。印刷は2×2の4枠、PDFは横4×縦2の8枠で1ページに配置します。</p><div class="row"><button class="btn" id="c2">キャンセル</button><button class="btn" id="pdf">PDF保存</button><button class="btn p" id="go">印刷</button></div></div></div>`;
+$('#c2').onclick=()=>$('#ov').innerHTML='';
+const run=pdf=>{const sel=[...document.querySelectorAll('.pl input:checked')].map(i=>S.find(s=>s.id===i.value));if(!sel.length)return toast('シートを選択してください');
+const cell=(s,i,a,b)=>`<div class="pc"><h4><span>${esc(s.title||'無題のシート')}</span><span>${cap(s,i,a)}</span></h4>${s.answers[i].slice(a,b).map((v,r)=>`<div class="pr"><b>${LBL(s,i,a+r)}</b>${MK.map(m=>`<i class="${m===v?'on':''}">${m==='-'?'−':m}</i>`).join('')}</div>`).join('')}</div>`;
+const pages=[],pool=[],N=pdf?8:4;
+sel.forEach(s=>{const cs=[];s.answers.forEach((arr,q)=>{for(let a=0;a<arr.length;a+=30)cs.push([s,q,a,Math.min(a+30,arr.length)])});if(s.type==='single')pool.push(...cs);else for(let i=0;i<cs.length;i+=N)pages.push(cs.slice(i,i+N))});
+for(let i=0;i<pool.length;i+=N)pages.push(pool.slice(i,i+N));
+$('#ov').innerHTML='';if(pdf){saveFile('math-mark.pdf',mkPDF(pages)).then(ok=>ok&&toast('PDFを保存しました'));return}
+$('#print').innerHTML=pages.map(p=>`<div class="pg">${p.map(x=>cell(...x)).join('')}</div>`).join('');setTimeout(()=>window.print(),100)};
+$('#go').onclick=()=>run(0);$('#pdf').onclick=()=>run(1)}
+S=S.filter(s=>T[s.type]);S.forEach(s=>s.answers=norm(s));home();
+</script></body></html>
